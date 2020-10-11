@@ -1,0 +1,9 @@
+Flask
+Flask-Cors
+Flask-RESTful
+PyMySQL
+pandas==0.25.1
+requests
+pika
+gunicorn
+gevent
