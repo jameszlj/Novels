@@ -1,4 +1,5 @@
 import service from "../utils/request.js"
+import { rsaEncrypt } from "../utils/rsa.js"
 
 
 export function GetCates() {
@@ -14,7 +15,7 @@ export function GetInfoPost(postParms){
     url:postParms.url,
     data:{
       key:postParms.key,
-      secretKey:"" //预留字段给加密用
+      secretKey:rsaEncrypt(new Date().getTime()+':'+"www.mi-novel.com"+':'+'jameszlj') //预留字段给加密用
     }
   })
 }

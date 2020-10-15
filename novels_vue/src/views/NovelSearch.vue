@@ -63,7 +63,6 @@ export default {
   },
 
   setup(props, context){
-
       const searchParma = reactive({
           url: "/search",
           key: context.root.$route.query.q  // context.root = this
@@ -73,7 +72,7 @@ export default {
           items:[]
       })
       GetInfoPost(searchParma).then(resp => {
-          console.log("in Search resp.data.data = ", resp.data.data);
+          // console.log("in Search resp.data.data = ", resp.data.data);
           searhResult.items = resp.data.data
       });
 

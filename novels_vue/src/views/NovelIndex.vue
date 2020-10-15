@@ -87,7 +87,7 @@ export default {
       capAllItems:[]
     })
     GetInfoPost(indexParams).then(resp => {
-      console.log("in novelindex  index data:",resp.data.data)
+      // console.log("in novelindex  index data:",resp.data.data)
       items.indexItems = resp.data.data
     })
     GetInfoPost(cap20Params).then(resp => {

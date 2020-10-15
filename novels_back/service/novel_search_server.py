@@ -17,10 +17,16 @@ def search_infos_by_key(search_key):
             book_newest_name 
         FROM
             book_infos 
-        WHERE
-            book_name = %s OR book_author = %s 
-    """
-    with MysqlHelper(DB_CONFIG) as mysql:
-        result = mysql.exec_query(str_sql, [search_key, search_key])
+    """.format(search_key,search_key)
+    sql_array = list()
+    params = list()
+    sql_array.append(str_sql)
+    if search_key:
+        sql_array.append("WHERE book_name LIKE %s")
+        sql_array.append("OR book_author LIKE %s")
+        params.append('%' + search_key + '%')
+        params.append('%' + search_key + '%')
+        with MysqlHelper(DB_CONFIG) as mysql:
+            result = mysql.exec_query(' '.join(sql_array), params)
 
     return result if result else []

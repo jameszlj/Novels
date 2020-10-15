@@ -14,8 +14,8 @@
           <ul  class="navbar-nav ml-auto">
             <li  class="form-inline">
               <div  class="form-inline">
-                <input v-model="search.key" type="text" placeholder="图书名\作者" class="mr-sm-2 form-control form-control-sm" >
-                <button @click="onSearch" type="submit" class="btn my-2 my-sm-0 btn-secondary btn-sm">Search</button>
+                <input v-model="search.key" @keyup.enter='onSearch' type="text" placeholder="图书名\作者" class="mr-sm-2 form-control form-control-sm" >
+                <button @click="onSearch"  type="submit" class="btn my-2 my-sm-0 btn-secondary btn-sm">Search</button>
               </div>
             </li>
           </ul>

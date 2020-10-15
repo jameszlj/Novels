@@ -19,33 +19,49 @@ const routes = [
     // 首页
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      title: '首页'
+  }
+
   },
   // 小说搜索
   {
     path: "/search",
     name: "NovelSearch",
-    component: NovelSearch
+    component: NovelSearch,
+    meta: {
+      title: '咪小说'
+  }
   },
 
   // 分类页面
   {
     path: "/:cate_id",
     name: "HomeCate",
-    component: HomeCate
+    component: HomeCate,
+    meta: {
+      title: '咪小说'
+  }
   },
   // 单个小说的首页
   {
     path: "/novel/:book_id",
     name: "NovelIndex",
-    component: NovelIndex
+    component: NovelIndex,
+    meta: {
+      title: '咪小说'
+  }
   },
 
   // 小说详情页 
   {
     path: "/novel/:book_id/:sort_id",
     name: "NovelDetail",
-    component: NovelDetail
+    component: NovelDetail,
+    meta: {
+      title: '咪小说'
+  }
   },
 
   // {

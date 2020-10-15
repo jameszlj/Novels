@@ -7,6 +7,7 @@ module.exports = {
   lintOnSave: false,
   chainWebpack: config => {
     config.resolve.symlinks(true) //热更新
+
   },
   configureWebpack: config => {
     if (process.env.NODE_ENV === 'production') {

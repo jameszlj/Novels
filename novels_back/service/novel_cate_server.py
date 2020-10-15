@@ -50,3 +50,22 @@ def get_cate_most_books_30(novel_cate):
         result = mysql.exec_query(str_sql, [novel_cate,])
 
     return result if result else []
+
+
+def get_new_books_top_5():
+    result = None
+    str_sql = """
+        SELECT
+            book_id,
+            book_name,
+            image_urls	
+        FROM
+            book_infos 
+        ORDER BY
+            book_last_update_time DESC 
+            LIMIT 5
+    """
+    with MysqlHelper(DB_CONFIG) as mysql:
+        result = mysql.exec_query(str_sql)
+
+    return result if result else []

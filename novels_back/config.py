@@ -23,6 +23,8 @@ BOOK_LIST = [
     'quanben'
 ]
 
+REQUSET_LISTS = ['www.baidu.com', 'www.mi-novel.com']
+
 LOG_CONFIG = {
     "version": 1,
     "disable_existing_loggers": True,

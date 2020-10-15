@@ -86,7 +86,7 @@ export default {
       detailItems:[]
     })
     GetInfoPost(detailParams).then(resp =>{
-      console.log("detail data", resp.data.data)
+      // console.log("detail data", resp.data.data)
       items.detailItems = resp.data.data
     })
 
