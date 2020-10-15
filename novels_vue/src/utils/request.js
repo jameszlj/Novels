@@ -17,7 +17,7 @@ const service = axios.create({
 // 请求拦截器： 在浏览器发送请求之前的处理; 用处：对真的发送请求之前可以判断，比如是否合法，是否符合请求参数的要求
 service.interceptors.request.use(
   function(config) {
-    console.log('request.js: request:  config===== ', config)
+    // console.log('request.js: request:  config===== ', config)
     return config
   },
   function(error) {
@@ -28,7 +28,7 @@ service.interceptors.request.use(
 // 响应拦截器： 服务器返回数据后处理
 service.interceptors.response.use(
   function(response) {
-    console.log('request.js: response = ', response)
+    // console.log('request.js: response = ', response)
     let data = response.data
     if (data.code == 0) {
       // 服务器有响应，但是并不是想要的数据
@@ -38,7 +38,7 @@ service.interceptors.response.use(
     } else {
       // 服务器有响应，并且数据正确
       console.log('服务器有响应，并且数据正确')
-      console.log('request.js: data.data = ', data.data)
+      // console.log('request.js: data.data = ', data.data)
       return response
     }
 

@@ -35,4 +35,6 @@ class ApiResult():
                 self.message = "error"
         else:
             self.code = 1
+        if self.message == 'error':
+            self.code = 0
         return {'code': self.code, 'message': self.message, 'data': self.data}, 200, self.headers

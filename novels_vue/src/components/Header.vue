@@ -1,49 +1,86 @@
 <template>
-  <b-container id="Header">
-    <b-navbar toggleable="lg" type="dark" variant="info">
-      <b-navbar-brand href="#">咪小说</b-navbar-brand>
+    <b-container id="Header">
+      <b-navbar toggleable="lg" type="dark" variant="info">
+        <b-navbar-brand href="#">咪小说</b-navbar-brand>
 
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item v-for="item in headData.headers" :key="item.id" :href="item.url">{{item.text}}</b-nav-item>
-        </b-navbar-nav>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item v-for="item in headData.headers" :key="item.id" :href="item.url" :class="item.url == now_url ? 'active':''">{{ item.text }}</b-nav-item>
+            
+          </b-navbar-nav>
 
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <b-nav-form>
-            <b-form-input size="sm" class="mr-sm-2" placeholder="输入小说名字或者作者"></b-form-input>
-            <b-button size="sm" class="my-2 my-sm-0" type="submit">Search</b-button>
-          </b-nav-form>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-  </b-container>
+          <ul  class="navbar-nav ml-auto">
+            <li  class="form-inline">
+              <div  class="form-inline">
+                <input v-model="search.key" type="text" placeholder="图书名\作者" class="mr-sm-2 form-control form-control-sm" >
+                <button @click="onSearch" type="submit" class="btn my-2 my-sm-0 btn-secondary btn-sm">Search</button>
+              </div>
+            </li>
+          </ul>
+        </b-collapse>
+      </b-navbar>
+    </b-container>
 </template>
 
 <script>
-import { GetCates } from '../apis/read.js'
-import { reactive, ref } from "@vue/composition-api" // ref 定义常量； reactive 定义对象
+import { GetCates } from "../apis/read.js";
+import { reactive, ref, onMounted } from "@vue/composition-api";  // ref 定义常量; reactive：定义对象
+import { stripscript } from "../apis/validate.js";
 
 export default {
-  name: 'Header',
-  setup(props, context) {
-    const headData = reactive({
-      headers : []
-    })
-    GetCates().then(response =>{
-      // console.log("in header components res==>",response.data.data)
-      headData.headers = response.data.data
-      // console.log("headData.headers ==>",headData.headers)
-    })
-    return {
-      headData
+    name:"Header",
+    setup(props, context){ // setup相当与beforecreate、created; props：来自爸爸的爱（父组件传入的内容）;context：当前组件拥有的内容
+      const now_url = ref(context.root.$route.path);
+
+      const headData = reactive({
+        headers:[]
+      });
+      GetCates().then(reponse =>{
+        // console.log("In Header reponse = ", reponse.data.data);
+        headData.headers = reponse.data.data;
+        // console.log("headData.headers = ", headData.headers)
+      });
+
+      onMounted(()=>{
+        // console.log("in Header search.key = ", search.key);
+      });
+
+      const search = reactive({
+        key:''
+      });
+
+      const onSearch = () =>{
+          // console.log("in Header search.key = ", search.key);
+          if(stripscript(search.key) == false || search.key == ''){
+            alert("您输入的信息有误，请确认后重新输入");
+          }else{
+            context.root.$router.push({
+              path: '/search',
+              query:{
+                q:search.key
+              }
+            });
+          }
+
+      }
+
+      return {
+        headData,
+        now_url,
+        search,
+        onSearch
+      }
+
     }
-  }
 }
 </script>
 
-<style lang="scss" scoped>
-
+<style lang="scss" scoped> // lang告诉解释其css符合什么编译器的语法; scoped：当前vue文件生效，没有scoped则全局生效
+@media (max-width:500px) {
+  #Header{
+    margin-top:90px
+  }
+}
 </style>

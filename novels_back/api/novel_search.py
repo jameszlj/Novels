@@ -1,0 +1,22 @@
+# coding:utf-8 
+# author:james
+# datetime:2020/10/14 15:00
+from flask_restful import Resource, reqparse
+
+from model.api_result import ApiResult
+from service.novel_search_server import search_infos_by_key
+from . import api
+
+
+@api.resource("/search")
+class NovelSearch(Resource):
+    def post(self):
+        result = ApiResult()
+        parser = reqparse.RequestParser()
+        parser.add_argument('key', location=['json', 'form'], type=str, default='')
+        parser.add_argument('secretKey', location=['json', 'form'], type=str, default='')
+        args = parser.parse_args()
+        search_key = args['key']
+        search_data = search_infos_by_key(search_key)
+        result.data = search_data
+        return result.to_resp()

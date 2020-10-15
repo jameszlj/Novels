@@ -6,10 +6,22 @@ if ENV == "DEV":
         'host': "localhost",
         'user': "root",
         'passwd': "root",
-        'db': "living-maybeline",
+        'db': "novel",
         'port': 3306,
         'charset': 'utf8'
     }
+
+BOOK_LIST = [
+    'xuanhuan',
+    'xiuzhen',
+    'dushi',
+    'lishi',
+    'wangyou',
+    'kehuan',
+    'yanqing',
+    'qita',
+    'quanben'
+]
 
 LOG_CONFIG = {
     "version": 1,
