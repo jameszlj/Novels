@@ -17,7 +17,7 @@ def search_infos_by_key(search_key):
             book_newest_name 
         FROM
             book_infos 
-    """.format(search_key,search_key)
+    """.format(search_key, search_key)
     sql_array = list()
     params = list()
     sql_array.append(str_sql)

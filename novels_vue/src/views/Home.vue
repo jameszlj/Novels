@@ -23,10 +23,16 @@
       </b-row>  
 
       <b-row>
-        <b-col v-for="item in  items.top5NewItems" :key="item.book_id">
-          <b-card  :img-src="item.image_urls" img-alt="Image" img-top>
-            <a :href="'/novel/'+item.book_id" class="card-link">{{ item.book_name | ellipsis }}</a>
-          </b-card>
+        <b-col class="normal-center" cols="12" md="2" v-for="item in  items.top5NewItems" :key="item.book_id">
+          <!-- <b-card fluid no-body :img-src="item.image_urls" img-alt="Image" img-top>
+            <template v-slot:header >
+              <a :href="'/novel/'+item.book_id" class="text-muted">{{ item.book_name }}</a>
+            </template>
+          </b-card> -->
+          <b-img thumbnail fluid :src="item.image_urls" alt="image"></b-img>
+          <div >
+            <a class="text-muted" :href="'/novel/'+item.book_id">{{ item.book_name }}</a>
+          </div>
         </b-col>
       </b-row>
 

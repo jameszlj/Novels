@@ -22,3 +22,4 @@ pnpm-debug.log*
 *.sw?
 
 /novels_back/logs
+/novels_back/config.py

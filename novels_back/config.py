@@ -11,6 +11,17 @@ if ENV == "DEV":
         'charset': 'utf8'
     }
 
+if ENV == "TEST":
+    DEBUG = False
+    DB_CONFIG = {
+        'host': "mysql-gen",
+        'user': "root",
+        'passwd': "ROOT",
+        'db': "novel",
+        'port': 3306,
+        'charset': 'utf8'
+    }
+
 BOOK_LIST = [
     'xuanhuan',
     'xiuzhen',
